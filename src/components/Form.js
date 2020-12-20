@@ -34,7 +34,11 @@ const Form = () => {
         <article className="have--account">
           <p>
             already have an account
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/yadprab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               log in
             </a>
           </p>
@@ -50,7 +54,6 @@ const Form = () => {
               value={formData.firstName}
               onChange={handleChange}
             />
-            
           </section>
           <section className="last--name">
             <label htmlFor="lastName">lastname</label>
@@ -76,11 +79,19 @@ const Form = () => {
         <article className="privacy--policy">
           <p>
             by our privacy policy
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/yadprab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               terms
             </a>
             and{" "}
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/yadprab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               conditions
             </a>
           </p>
@@ -89,7 +100,7 @@ const Form = () => {
 
         <section className="social--media--section">
           <a
-            href="#"
+            href="https://github.com/yadprab"
             target="_blank"
             rel="noopener noreferrer"
             id="facebook--link"
@@ -99,7 +110,7 @@ const Form = () => {
             </svg>
           </a>
           <a
-            href="#"
+            href="https://github.com/yadprab"
             target="_blank"
             rel="noopener noreferrer"
             id="twitter--link"
