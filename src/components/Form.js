@@ -1,27 +1,100 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+import { Modal } from "./Modal";
+import { Modal2 } from "./Modal2";
 
+const reducer = (state, action) => {
+  if (action.type === "EMPTY") {
+    return { ...state, isEmpty: true, alertContent: "please enter the values" };
+  }
+  if (action.type === "first_EMPTY") {
+    return {
+      ...state,
+      isEmpty: true,
+      alertContent: "please enter your first name",
+    };
+  }
+  if (action.type === "last_EMPTY") {
+    return {
+      ...state,
+      isEmpty: true,
+      alertContent: "please enter your last name",
+    };
+  }
+  if (action.type === "email_EMPTY") {
+    return {
+      ...state,
+      isEmpty: true,
+      alertContent: "please enter your email address",
+    };
+  }
+  if (action.type === "SUBMIT") {
+    const newPeople = [...defaultState.data, action.payLoad];
+    return {
+      ...state,
+      isEmpty: false,
+      alertContent: "",
+      data: newPeople,
+      isModelOpen: true,
+      modalContent: "thankyou for submitting",
+    };
+  }
+  if (action.type === "CLOSE") {
+    return {
+      ...state,
+      isModelOpen: false,
+    };
+  }
+
+  return state;
+};
+const defaultState = {
+  data: [],
+  isModelOpen: false,
+  modalContent: "",
+  isEmpty: false,
+  alertContent: "",
+};
 const Form = () => {
-
   const [people, setPeople] = useState([]);
   const [formData, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...formData, [name]: value });
- 
-   
-   
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-   setPeople([...people, formData]);
-   setData({ firstName: "", lastName: "", email: "" });
-   
+    const { firstName, lastName, email } = formData;
+
+    if (firstName === "" && lastName === "" && email === "") {
+      dispatch({ type: "EMPTY" });
+    } else if (firstName === "") {
+      dispatch({ type: "first_EMPTY" });
+    } else if (lastName === "") {
+      dispatch({ type: "last_EMPTY" });
+    } else if (email === "") {
+      dispatch({ type: "email_EMPTY" });
+    } else {
+      const newData = { id: Date.now(), formData };
+      setPeople([...people, newData]);
+
+      dispatch({ type: "SUBMIT", payLoad: people });
+
+      setData({
+        firstName: "",
+        lastName: "",
+        email: "",
+      });
+    }
+  };
+  const closeModal = () => {
+    dispatch({ type: "CLOSE" });
   };
   return (
     <>
@@ -140,6 +213,10 @@ const Form = () => {
           </button>
         </section>
       </form>
+      {state.isEmpty && <Modal2 modalContent={state.alertContent} />}
+      {state.isModelOpen && (
+        <Modal modalContent={state.modalContent} closeModal={closeModal} />
+      )}
     </>
   );
 };

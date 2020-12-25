@@ -58,6 +58,7 @@ svg {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 form {
@@ -274,5 +275,79 @@ input[type=submit] {
 .social--media--section #twitter--link {
   margin-left: 0.3em;
   background-color: #1d9ceb;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.overlay .modal {
+  background-color: var(--bg);
+  padding: 2em;
+  border-radius: 5px;
+  color: var(--txt);
+  opacity: 0;
+  -webkit-animation: popup 0.4s ease-in forwards;
+          animation: popup 0.4s ease-in forwards;
+}
+
+.overlay--alert {
+  position: absolute;
+  top: 50px;
+  padding: 1.5em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.6rem;
+  text-transform: capitalize;
+  left: 0;
+  right: 0;
+  color: #e03731;
+}
+
+@-webkit-keyframes popup {
+  0% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes popup {
+  0% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -51,6 +51,7 @@ svg{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
    
  
 }
@@ -230,4 +231,52 @@ input[type=submit]{
 
 
 
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal{
+        background-color: var(--bg);
+        padding: 2em;
+        border-radius: 5px;
+        color: var(--txt);
+        opacity: 0;
+        animation: popup 0.4s ease-in forwards;
+    }
+}
+
+.overlay--alert{
+    position: absolute;
+    top:50px;
+    padding: 1.5em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+    text-transform: capitalize;
+    left: 0;
+    right: 0;
+    color: rgb(224, 55, 49);
+   
+}
+
+@keyframes popup{
+    0%{
+        transform: scale(0.3);
+        opacity: 0;
+
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
 }
