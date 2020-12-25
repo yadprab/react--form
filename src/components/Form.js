@@ -3,49 +3,53 @@ import { Modal } from "./Modal";
 import { Modal2 } from "./Modal2";
 
 const reducer = (state, action) => {
-  if (action.type === "EMPTY") {
-    return { ...state, isEmpty: true, alertContent: "please enter the values" };
-  }
-  if (action.type === "first_EMPTY") {
-    return {
-      ...state,
-      isEmpty: true,
-      alertContent: "please enter your first name",
-    };
-  }
-  if (action.type === "last_EMPTY") {
-    return {
-      ...state,
-      isEmpty: true,
-      alertContent: "please enter your last name",
-    };
-  }
-  if (action.type === "email_EMPTY") {
-    return {
-      ...state,
-      isEmpty: true,
-      alertContent: "please enter your email address",
-    };
-  }
-  if (action.type === "SUBMIT") {
-    const newPeople = [...defaultState.data, action.payLoad];
-    return {
-      ...state,
-      isEmpty: false,
-      alertContent: "",
-      data: newPeople,
-      isModelOpen: true,
-      modalContent: "thankyou for submitting",
-    };
-  }
-  if (action.type === "CLOSE") {
-    return {
+  switch (action.type) {
+    case "EMPTY":
+      return {
+        ...state,
+        isEmpty: true,
+        alertContent: "please enter the values",
+      };
+    case "first_EMPTY":
+      return {
+        ...state,
+        isEmpty: true,
+        alertContent: "please enter your first name",
+      };
+    case "last_EMPTY":
+      return {
+        ...state,
+        isEmpty: true,
+        alertContent: "please enter your last name",
+      };
+    case "email_EMPTY":
+      return {
+        ...state,
+        isEmpty: true,
+        alertContent: "please enter your email address",
+      };
+    case "SUBMIT":
+      const newPeople = [...defaultState.data, action.payLoad];
+      return {
+        ...state,
+        isEmpty: false,
+        alertContent: "",
+        data: newPeople,
+        isModelOpen: true,
+        modalContent: "thankyou for submitting",
+      };
+    case "CLOSE":
+       return {
       ...state,
       isModelOpen: false,
     };
+    default:
+       return state;
+     
   }
 
-  return state;
+
+
 };
 const defaultState = {
   data: [],
